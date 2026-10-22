@@ -223,48 +223,105 @@ Los apartados 6.1 y 6.2 corresponden a las descripciones detalladas de UC-05 y U
 
 ### 6.1 Descripción detallada UC-05 — Actualizar perfil
 
-**Identificador y nombre del caso de uso:** [Indica el caso.]
+**Identificador y nombre del caso de uso:** UC-05 — Actualizar perfil.
 
-**Objetivo:** [Explica qué resultado pretende obtener el participante.]
+**Objetivo:** Cambiar los datos personales, de contacto y las preferencias de la cuenta propia y guardar los cambios.
 
-**Participantes:** [Indica el actor principal y los actores de apoyo, si los hay.]
+**Participantes:** Principal: Usuario registrado. No hay actores de apoyo.
 
-**Precondiciones:** [Indica qué se da por cumplido al comenzar. Las comprobaciones que realiza el sistema pertenecen al flujo.]
+**Precondiciones:** Tener una cuenta activa y haber iniciado sesión en la plataforma.
 
-**Inicio:** [Indica qué acción o suceso inicia el caso.]
+**Inicio:** El usuario pulsa en la opción para editar su perfil.
 
-**Escenario principal de éxito:** [Describe la secuencia entre los participantes y el sistema.]
+**Escenario principal de éxito:**
+1. El sistema muestra los datos actuales del perfil: nombre completo, teléfono, dirección postal y preferencias dietéticas (vegana, sin gluten, baja en carbohidratos). También enseña el alias y el correo, pero solo para consultarlos.
+2. El usuario cambia alguno de los campos editables (nombre, teléfono, dirección o preferencias) y le da a guardar.
+3. El sistema comprueba que el nombre y el teléfono no estén vacíos ni tengan solo espacios, y que el teléfono tenga un formato válido (aceptando prefijos internacionales).
+4. El sistema guarda todos los datos modificados.
+5. El sistema confirma al usuario que su perfil se ha actualizado correctamente.
 
-**Extensiones (flujos alternativos):** [Vincula cada variación a un paso. Indica cómo continúa o termina.]
+**Extensiones (flujos alternativos):**
+- **3a. Datos obligatorios vacíos o teléfono mal escrito:**
+  1. El sistema marca el campo que está mal y muestra un mensaje diciendo qué hay que arreglar.
+  2. No guarda ningún cambio y mantiene lo que ha escrito el usuario en la pantalla.
+  3. El usuario corrige el fallo y vuelve a darle a guardar (vuelve al paso 3).
+- **2-3a. Cancelar la edición:**
+  1. El usuario cancela la edición en cualquier momento antes de guardar.
+  2. El sistema descarta los cambios hechos en esta ocasión y deja el perfil como estaba guardado antes. El caso de uso termina.
+- **4a. Error del sistema al guardar:**
+  1. Ocurre un problema técnico en el sistema y no se pueden guardar los cambios.
+  2. El sistema avisa del error, no confirma la actualización y deja los datos que había escrito el usuario para que no los pierda si quiere reintentar.
+  3. Los datos que ya estaban guardados no cambian. El usuario puede volver a intentar guardar (paso 3) o salir cancelando.
 
-**Postcondiciones:** [Indica qué queda establecido con éxito y qué se conserva o cambia si el caso termina sin éxito o se cancela. Una consulta no requiere modificar datos para alcanzar su objetivo.]
+**Postcondiciones:**
+- **Éxito:** Los nuevos datos (nombre, teléfono, dirección o preferencias) quedan guardados en el perfil del usuario.
+- **Cancelación o fallo:** El perfil se queda con los datos que tenía antes y el sistema no guarda nada nuevo.
 
-**Reglas y NFR pertinentes:** [Remite a los requisitos y actas que condicionan el comportamiento.]
+**Reglas y NFR pertinentes:**
+- Catálogo canónico de requisitos: UR-03; FR-019 (editar datos excepto alias y correo) y FR-020 (no entra en este caso).
+- Acta de acuerdos de UC-05, v1.1: datos que se pueden modificar, campos obligatorios, validación de espacios y teléfono, qué pasa al cancelar o cuando falla el guardado.
+- NFR pertinentes: NFR-010 (accesibilidad WCAG 2.2 AA).
 
-**Preguntas abiertas:** [Registra solo las cuestiones necesarias que las fuentes no resuelvan. Si no hay preguntas para el alcance descrito, indícalo.]
+**Preguntas abiertas:** No hay preguntas abiertas sobre el alcance acordado en el acta v1.1.
+
 
 ### 6.2 Descripción detallada UC-21 — Buscar recetas
 
-**Identificador y nombre del caso de uso:** [Indica el caso.]
+**Identificador y nombre del caso de uso:** UC-21 — Buscar recetas.
 
-**Objetivo:** [Explica qué resultado pretende obtener el participante.]
+**Objetivo:** Encontrar recetas publicadas y validadas usando criterios de búsqueda (ingredientes, texto e ingredientes excluidos), ver la lista de resultados y abrir el detalle de la receta elegida.
 
-**Participantes:** [Indica el actor principal y los actores de apoyo, si los hay.]
+**Participantes:** Principal: Usuario registrado. No hay actores de apoyo.
 
-**Precondiciones:** [Indica qué se da por cumplido al comenzar. Las comprobaciones que realiza el sistema pertenecen al flujo.]
+**Precondiciones:** Tener la sesión iniciada en la plataforma.
 
-**Inicio:** [Indica qué acción o suceso inicia el caso.]
+**Inicio:** El usuario entra en la sección de búsqueda de recetas.
 
-**Escenario principal de éxito:** [Describe la secuencia entre los participantes y el sistema.]
+**Escenario principal de éxito:**
+1. El sistema muestra la pantalla de búsqueda con los campos para poner texto, elegir ingredientes a incluir y seleccionar ingredientes a excluir.
+2. El usuario elige uno o varios ingredientes para incluir (pudiendo añadir también texto o ingredientes a excluir) y le da a buscar.
+3. El sistema valida que se haya puesto al menos un criterio, que no haya coincidencias raras entre incluidos y excluidos, y busca las recetas que cumplan todo.
+4. El sistema enseña la lista de recetas publicadas y validadas encontradas, ordenadas de más recientes a más antiguas. Para cada una muestra su vista previa: título, foto (o «Sin imagen» si no tiene), nota media (o «Sin valoraciones» si no hay) y descripción corta.
+5. El usuario pulsa en una receta de la lista para verla mejor.
+6. El sistema muestra toda la información de la receta: título, imagen (si hay), ingredientes, pasos de preparación, tiempo de cocinado, raciones, el alias de quien la subió y la marca de receta validada.
+7. El usuario decide volver a la pantalla de resultados.
+8. El sistema muestra de nuevo la lista de resultados de la última búsqueda, manteniendo los criterios elegidos y el mismo orden.
 
-**Extensiones (flujos alternativos):** [Vincula cada variación a un paso. Indica cómo continúa o termina.]
+**Extensiones (flujos alternativos):**
+- **2a. Búsqueda por palabra o frase:**
+  1. El usuario escribe una palabra o frase en el buscador.
+  2. El sistema busca que ese texto aparezca en el título o la descripción corta y filtra los resultados (sigue en el paso 4).
+- **2b. Excluir ingredientes:**
+  1. El usuario marca ingredientes que no quiere que aparezcan.
+  2. El sistema filtra las recetas comprobando que ninguna de la lista lleve esos ingredientes (sigue en el paso 4).
+- **3a. Conflicto de ingredientes (incluir y excluir el mismo):**
+  1. El sistema detecta que se ha elegido el mismo ingrediente para incluirlo y para excluirlo a la vez.
+  2. Aviso del conflicto y no hace la búsqueda.
+  3. El usuario cambia la selección (vuelve al paso 2).
+- **3b. Buscar sin poner criterios:**
+  1. El usuario le da a buscar sin escribir nada ni seleccionar ningún ingrediente.
+  2. El sistema le pide que ponga al menos un criterio y no hace la consulta.
+  3. El usuario pone algún criterio (vuelve al paso 2).
+- **4a. No hay resultados (sugerencias o alternativas):**
+  1. Ninguna receta validada cumple los filtros indicados.
+  2. El sistema avisa de que no hay resultados y mantiene los criterios puestos en pantalla.
+  3. Si el texto tiene un fallo que pueda corregirse, propone la corrección. Si no, propone alternativas relacionadas manteniendo los ingredientes excluidos (si no tiene sugerencias, solo avisa de que no hay resultados).
+  4. El usuario decide si acepta alguna propuesta o cambia los filtros a mano. Si acepta una sugerencia, ve los nuevos criterios y decide si busca de nuevo (paso 3) o lo deja.
+- **4b/6a. Fallo del sistema en la búsqueda o al abrir el detalle:**
+  1. El sistema no puede buscar o no carga la receta por un problema técnico.
+  2. El sistema avisa del error técnico (sin decir que es una búsqueda sin resultados) y guarda los criterios que había.
+  3. El usuario puede probar a buscar de nuevo o salir.
 
-**Postcondiciones:** [Indica qué queda establecido con éxito y qué se conserva o cambia si el caso termina sin éxito o se cancela. Una consulta no requiere modificar datos para alcanzar su objetivo.]
+**Postcondiciones:**
+- **Éxito:** El usuario ha visto los resultados y ha consultado el detalle de una receta. Los criterios y el orden de la búsqueda se quedan guardados durante la sesión. La consulta no cambia datos del sistema.
+- **Sin resultados o fallo:** Se guardan los criterios en pantalla para poder modificarlos o reintentar.
 
-**Reglas y NFR pertinentes:** [Remite a los requisitos y actas que condicionan el comportamiento.]
+**Reglas y NFR pertinentes:**
+- Catálogo canónico de requisitos: UR-08; FR-085 (texto), FR-086 (ingredientes incluidos), FR-087 (ingredientes excluidos), FR-089 (vista previa), FR-099 (ordenar por fecha), FR-102 (sugerencias), FR-119 (sesión iniciada); FR-056 (datos de receta), FR-066 (insignia de validada) y FR-192 (mostrar alias).
+- Acta de acuerdos de UC-21, v1.1: combinación de criterios, reglas para texto, solo recetas publicadas/validadas, textos de vista previa vacía, exclusiones en sugerencias y alcance parcial.
+- NFR pertinentes: NFR-004 (100 usuarios simultáneos), NFR-005 (tiempo <= 2 s) y NFR-010 (accesibilidad WCAG 2.2 AA).
 
-**Preguntas abiertas:** [Registra solo las cuestiones necesarias que las fuentes no resuelvan. Si no hay preguntas para el alcance descrito, indícalo.]
-
+**Preguntas abiertas:** No hay preguntas abiertas sobre el alcance descrito en el acta v1.1. El resto de filtros y opciones de búsqueda siguen pendientes en el modelo.
 ## 7 Continuidad entre iteraciones
 
 E1 estableció la primera vista del modelo. Su estado revisado se conserva en el commit público `984a17f`, con los casos UC-01 a UC-07, UC-09 a UC-11 y UC-31 a UC-35.
