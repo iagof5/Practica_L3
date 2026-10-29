@@ -15,21 +15,21 @@
 
 ## Épica de búsqueda
 
-Como [rol], quiero [capacidad amplia], para [beneficio].
+Como persona usuaria registrada, quiero filtrar las busquedas por palabar, frases o excluyendo/incluyendo ingredientes, para obtener recetas adecuadas a mis preferencias sin elementos no deseados.
 
 **Estado:** descompuesta en US-01, US-02 y US-03. Conserva la necesidad conjunta.
 
 ## Justificación de la división
 
-[Justificación de los resultados útiles que separa la división.]
+La división esta justificada mediante el nivel de dificultad de la busqueda.
 
 ## US-01
 
-**Título:** [Capacidad]
+**Título:** Exclusión directa de ingredientes.
 
-Como [rol], quiero [capacidad], para [beneficio].
+Como persona registrada quiero poder excluir ingredientes en la busqueda de mis recetas para una mayor rapidez de busqueda y exclusion de recetas que no deseo.
 
-**Fuentes:** UR-08; UC-21; [FR principal]; acta, [apartado pertinente].
+**Fuentes:** UR-08; UC-21; FR-85; acta, Criterios de busqueda.
 
 ### Criterios de aceptación
 
@@ -39,11 +39,11 @@ Como [rol], quiero [capacidad], para [beneficio].
 
 ## US-02
 
-**Título:** [Capacidad]
+**Título:** Detección y gestión de conflictos de exclusión.
 
-Como [rol], quiero [capacidad], para [beneficio].
+Como usuario registrado, quiero que el sistema me advierta cuando selecciono el mismo ingrediente para incluir y excluir, para poder corregir el conflicto antes de ejecutar la búsqueda y evitar resultados contradictorios.
 
-**Fuentes:** UR-08; UC-21; [FR principal]; acta, [apartado pertinente].
+**Fuentes:** UR-08; UC-21; FR-86; acta, Criterios de busqueda.
 
 ### Criterios de aceptación
 
@@ -53,11 +53,11 @@ Como [rol], quiero [capacidad], para [beneficio].
 
 ## US-03
 
-**Título:** [Capacidad]
+**Título:**  Exclusión combinada con texto e ingredientes incluidos.
 
-Como [rol], quiero [capacidad], para [beneficio].
+Como usuario registrado, quiero combinar ingredientes excluidos con texto de búsqueda e ingredientes incluidos, para afinar al máximo la precisión de la lista de recetas obtenida.
 
-**Fuentes:** UR-08; UC-21; [FR principal]; acta, [apartado pertinente].
+**Fuentes:** UR-08; UC-21; FR-87; acta, Criterios de busqueda.
 
 ### Criterios de aceptación
 
